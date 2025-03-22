@@ -1,0 +1,93 @@
+fiteat_back/
+│── node_modules/                # 📦 Dépendances installées par npm
+│── dist/                         # 📂 Fichiers compilés après build (NestJS transpile TypeScript en JavaScript)
+│── src/
+│   ├── main.ts                   # 🚀 Point d'entrée de l'application NestJS
+│   ├── app.module.ts              # 📌 Module principal qui regroupe les modules Users, Coaches, etc.
+│   │
+│   ├── config/                    # ⚙️ Configuration de l'application
+│   │   ├── database.config.ts      # 🔗 Configuration MongoDB avec Mongoose
+│   │   ├── env.config.ts           # 🔐 Chargement des variables d'environnement
+│   │
+│   ├── users/                      # 👤 Gestion des utilisateurs
+│   │   ├── dto/                     # ✅ Validation des données d'entrée (DTO)
+│   │   │   ├── create-user.dto.ts   # 🎯 DTO pour créer un utilisateur
+│   │   │   ├── update-user.dto.ts   # 🎯 DTO pour modifier un utilisateur
+│   │   │
+│   │   ├── schemas/                 # 🏗️ Modèle Mongoose pour la base de données
+│   │   │   ├── user.schema.ts       # 📜 Schéma Mongoose pour les utilisateurs
+│   │   │
+│   │   ├── users.controller.ts      # 🎯 Définition des routes API (GET, POST, PUT, DELETE)
+│   │   ├── users.service.ts         # 🧠 Contient la logique métier des utilisateurs
+│   │   ├── users.module.ts          # 🔗 Module qui regroupe les fichiers Users
+│   │
+│   ├── coaches/                     # 🏋️ Gestion des coachs
+│   │   ├── dto/
+│   │   │   ├── create-coach.dto.ts   # 🎯 DTO pour créer un coach
+│   │   │   ├── update-coach.dto.ts   # 🎯 DTO pour modifier un coach
+│   │   │
+│   │   ├── schemas/
+│   │   │   ├── coach.schema.ts       # 📜 Schéma Mongoose pour les coachs
+│   │   │
+│   │   ├── coaches.controller.ts     # 🎯 Définition des routes API (GET, POST, PUT, DELETE)
+│   │   ├── coaches.service.ts        # 🧠 Contient la logique métier des coachs
+│   │   ├── coaches.module.ts         # 🔗 Module qui regroupe les fichiers Coaches
+│   │
+│   ├── training-programs/            # 🏋️‍♂️ Gestion des programmes d'entraînement
+│   │   ├── dto/
+│   │   │   ├── create-program.dto.ts  # 🎯 DTO pour créer un programme d'entraînement
+│   │   │
+│   │   ├── schemas/
+│   │   │   ├── training-program.schema.ts  # 📜 Schéma Mongoose des programmes d'entraînement
+│   │   │
+│   │   ├── training-programs.controller.ts  # 🎯 Définition des routes API (GET, POST, PUT, DELETE)
+│   │   ├── training-programs.service.ts     # 🧠 Contient la logique métier des programmes
+│   │   ├── training-programs.module.ts      # 🔗 Module qui regroupe les fichiers Programmes
+│   │
+│   ├── orders/                      # 📦 Gestion des commandes
+│   │   ├── dto/
+│   │   │   ├── create-order.dto.ts   # 🎯 DTO pour créer une commande
+│   │   │
+│   │   ├── schemas/
+│   │   │   ├── order.schema.ts       # 📜 Schéma Mongoose pour les commandes
+│   │   │
+│   │   ├── orders.controller.ts      # 🎯 Définition des routes API (GET, POST, PUT, DELETE)
+│   │   ├── orders.service.ts         # 🧠 Contient la logique métier des commandes
+│   │   ├── orders.module.ts          # 🔗 Module qui regroupe les fichiers Orders
+│   │
+│   ├── restaurants/                  # 🍽️ Gestion des restaurants
+│   │   ├── dto/
+│   │   │   ├── create-restaurant.dto.ts  # 🎯 DTO pour créer un restaurant
+│   │   │
+│   │   ├── schemas/
+│   │   │   ├── restaurant.schema.ts      # 📜 Schéma Mongoose des restaurants
+│   │   │
+│   │   ├── restaurants.controller.ts     # 🎯 Définition des routes API (GET, POST, PUT, DELETE)
+│   │   ├── restaurants.service.ts        # 🧠 Contient la logique métier des restaurants
+│   │   ├── restaurants.module.ts         # 🔗 Module qui regroupe les fichiers Restaurants
+│   │
+│   ├── diet-preferences/             # 🥗 Gestion des préférences alimentaires
+│   │   ├── schemas/
+│   │   │   ├── diet-preference.schema.ts  # 📜 Schéma des préférences alimentaires
+│   │   │
+│   │   ├── diet-preferences.module.ts    # 🔗 Module préférences alimentaires
+│   │
+│   ├── physical-conditions/           # 🏋️ Suivi de la condition physique
+│   │   ├── schemas/
+│   │   │   ├── physical-condition.schema.ts  # 📜 Schéma condition physique
+│   │   │
+│   │   ├── physical-conditions.module.ts    # 🔗 Module condition physique
+│   │
+│   ├── delivery-settings/             # 🚚 Paramètres de livraison
+│   │   ├── schemas/
+│   │   │   ├── delivery-setting.schema.ts  # 📜 Schéma paramètres de livraison
+│   │   │
+│   │   ├── delivery-settings.module.ts    # 🔗 Module paramètres livraison
+│   │
+│── test/                              # ✅ Tests unitaires et end-to-end
+│── .env                               # 🔐 Variables d'environnement (MongoDB, JWT, etc.)
+│── .gitignore                         # 🚫 Fichiers à ignorer par Git
+│── package.json                        # 📦 Dépendances et scripts npm
+│── tsconfig.json                       # ⚙️ Configuration TypeScript
+│── nest-cli.json                       # ⚙️ Configuration de NestJS
+│── README.md                           # 📖 Documentation du projet

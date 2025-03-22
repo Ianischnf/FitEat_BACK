@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Types } from "mongoose";
+import { Types, Document } from "mongoose";
 
 @Schema()
 export class User extends Document {
     @Prop({ required : true})
-    nom: string;
+    name: string;
 
     @Prop({required : true, unique: true})
     email : string;
@@ -12,11 +12,12 @@ export class User extends Document {
     @Prop({ required : true})
     password : string;
 
-    @Prop({ required : true})
-    registration_date : Date;
-
-    @Prop({ required : true})
-    last_login : Date;
+    @Prop({ default: Date.now })
+    registration_date?: Date;
+    
+    @Prop({ default: null })
+    last_login?: Date;
+    
 
     @Prop({ type: [{ type: Types.ObjectId, ref: "Coach" }] })
     coaches: Types.ObjectId[];

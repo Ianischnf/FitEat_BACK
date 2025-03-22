@@ -1,15 +1,16 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
-
-console.log("Connexion à MONGO_URI : ", process.env.MONGO_URI);
+import { CoachesModule } from './coaches/coaches.module';
+import envConfig from './config/env.config';
+import { DatabaseModule } from './config/database.config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
-    MongooseModule.forRoot(process.env.MONGO_URI || 'mongodb://localhost:27017/default_db'),
+    ConfigModule.forRoot({ isGlobal: true, load: [envConfig] }), // ✅ Charge le fichier env.config.ts
+    ...DatabaseModule, // ✅ Utilise ConfigService dans database.config.ts
     UsersModule,
+    CoachesModule
   ],
 })
 export class AppModule {}
