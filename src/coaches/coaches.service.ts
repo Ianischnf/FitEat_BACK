@@ -23,7 +23,7 @@ export class CoachesService{
     }
 
     async remove(id : string) : Promise<Coach | null> {
-        return this.coachModel.findByIdAndDelete(id).exec()
+        return this.coachModel.findByIdAndDelete(id).exec();
     }
 
     async findByEmail( email : string) : Promise<Coach | null> {
