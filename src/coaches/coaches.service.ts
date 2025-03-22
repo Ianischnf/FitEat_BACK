@@ -26,4 +26,8 @@ export class CoachesService{
         return this.coachModel.findByIdAndDelete(id).exec()
     }
 
+    async findByEmail( email : string) : Promise<Coach | null> {
+        return this.coachModel.findOne( {email}).exec();
+    }
+
 }
