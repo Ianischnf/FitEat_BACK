@@ -5,6 +5,7 @@ import { CoachesModule } from './coaches/coaches.module';
 import { AuthModule } from './auth/auth.module';
 import envConfig from './config/env.config';
 import { DatabaseModule } from './config/database.config';
+import { RegisterModule } from './register/register.module';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { DatabaseModule } from './config/database.config';
     ...DatabaseModule, // ✅ Utilise ConfigService dans database.config.ts
     UsersModule,
     CoachesModule,
-    AuthModule
+    AuthModule,
+    RegisterModule
   ],
 })
 export class AppModule {}

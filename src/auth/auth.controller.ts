@@ -2,7 +2,6 @@ import { Controller, Post, Body, UnauthorizedException, UseGuards, Get, Req } fr
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
 
 
 @Controller('auth')
@@ -15,7 +14,7 @@ export class AuthController {
   getProfil(@Req() req){
     return req.user
   }
-
+  
   @Post('login')
   async login(@Body() loginDto: LoginDto) {
     const user = await this.authService.validatedUserOrCoach(loginDto);
@@ -25,10 +24,5 @@ export class AuthController {
     }
 
     return this.authService.login(user);
-  }
-
-  @Post('register')
-  async register(@Body() createUserDto: CreateUserDto){
-    return this.authService.register(createUserDto)
   }
 }
