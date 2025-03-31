@@ -16,11 +16,8 @@ export class AuthController {
   }
 
   @Post('login')
-  async login(@Body() loginDto: LoginDto) {
-    const user = await this.authService.validatedUserOrCoach(
-      loginDto.email,
-      loginDto.password,
-    );
+  async login(@Body() dto: LoginDto) {
+    const user = await this.authService.validatedUserOrCoach(dto);
 
     if (!user) {
       throw new UnauthorizedException('Email ou mot de passe invalide.');
