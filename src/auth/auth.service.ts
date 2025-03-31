@@ -1,10 +1,11 @@
-import { Injectable } from "@nestjs/common";
+import { ConflictException, Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { CoachesService } from "src/coaches/coaches.service";
 import { UsersService } from "src/users/users.service";
 import * as bcrypt from 'bcrypt';
 import { User } from "src/users/schemas/user.schema";
 import { LoginDto } from "./dto/login.dto";
+import { CreateUserDto } from "src/users/dto/create-user.dto";
 
 
 @Injectable()
@@ -16,16 +17,15 @@ export class AuthService {
     ) {}
 
     async validatedUserOrCoach(dto : LoginDto):  Promise<User | null>{
-        const { email, password } = dto
         const user = await this.usersService.findByEmail(dto.email);
 
-        if(user && await bcrypt.compare(password, user.password)) {
+        if(user && await bcrypt.compare(dto.password, user.password)) {
             return { ...user.toObject(), role: 'user' };
         }
 
         const coach = await this.coachesService.findByEmail(dto.email)
 
-        if( coach && await bcrypt.compare(password, coach.password)) {
+        if( coach && await bcrypt.compare(dto.password, coach.password)) {
             return { ...coach.toObject(), role : 'coach'}
         }
 
@@ -39,11 +39,26 @@ export class AuthService {
         };
       }
 
-      async register(dto : LoginDto){
-        const existing = await this.usersService.findByEmail(dto.email);
+      async register(dto : CreateUserDto){
+        const existing = await  this.usersService.findByEmail(dto.email)
 
-        if (existing) {
-            throw new Error("L'utilisateur existe déjà");
+        if(existing){
+            throw new ConflictException("Un utilisateur avec cet email existe déjà");
+        }
+
+        const hashedPassword = await bcrypt.hash(dto.password, 10);
+        const user           = await this.usersService.createUser({
+            ...dto,
+            password: hashedPassword,
+        });
+
+        return {
+            message : 'Inscription réussi',
+            user : {
+                id: user._id,
+                name: user.name,
+                email: user.email
+            }
         }
       }
     
