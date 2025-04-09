@@ -23,4 +23,20 @@ export class UsersService {
     async findByEmail(email : string) : Promise<User | null> {
         return this.userModel.findOne({ email }).exec()
     }
+
+    async assignCoach(userId : string, coachId : string){
+        return this.userModel.findByIdAndUpdate(
+            userId,
+            { coach : coachId },
+            { new   : true } //retourn l'utilisateur mis à jour
+        ).populate('coach');
+    }
+
+    // COMME SI 
+
+    /* const user = await this.userModel.findById(userId)
+    user.coach = userId;
+    await user.save();
+    */
+   
 }

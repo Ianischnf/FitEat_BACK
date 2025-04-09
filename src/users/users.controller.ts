@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put, UseGuards } from "@nestjs/common";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UsersService } from "./users.service";
 import { AuthGuard } from "@nestjs/passport";
@@ -17,6 +17,12 @@ export class UsersController {
         return this.usersService.createUser(userData)
     }
 
-
+    @Put(':id/assign-coach')
+    async assignCoach(
+        @Param('id') userId: string,
+        @Param('coachId') coachId: string
+    ){
+        return this.usersService.assignCoach(userId, coachId);
+    }
 
 }
