@@ -18,8 +18,12 @@ export class Coach extends Document {
     @Prop()
     description?: string;
 
-    @Prop({ type: Object }) // Tu peux affiner selon la structure JSON si tu veux
+    @Prop({ type: Object }) // affiner selon la structure JSON si tu veux
     disponibilite?: Record<string, any>;
+
+    @Prop({ default : 'coach'})
+    role: string;
+
 }
 
 export const CoachSchema = SchemaFactory.createForClass(Coach);
